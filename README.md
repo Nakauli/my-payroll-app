@@ -21,7 +21,7 @@ A simulated distributed system where responsibilities are decoupled into separat
 
 1.  **Clone the repository**
     ```bash
-    git clone [https://github.com/your-username/my-payroll-app.git](https://github.com/your-username/my-payroll-app.git)
+    git clone https://github.com/Nakauli/my-payroll-app/tree/master
     ```
 
 2.  **Install dependencies**
