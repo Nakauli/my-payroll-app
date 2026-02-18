@@ -46,25 +46,32 @@ const MonolithicPayroll = () => {
     setEmployees(employees.filter(emp => emp.id !== id));
   };
 
-  // --- Payroll Calculation for Task A3 ---
+  // --- TASK A3: PAYROLL COMPUTATION ---
   
   const computePayroll = (empId) => {
     const employee = employees.find(e => e.id === empId);
     if (!employee) return;
 
-    // calculating gross pay assuming a fixed 22 working days
-    const daysWorked = 22; 
+    // FIX: Ask the user for the number of days instead of assuming 22
+    const daysInput = prompt(`How many days did ${employee.name} work?`);
+    
+    // If the user clicked "Cancel" or typed nothing, stop here
+    if (daysInput === null || daysInput === "") return;
+
+    const daysWorked = parseFloat(daysInput);
+
+    // Formula: Gross Pay = Daily Rate * Days Worked
     const grossPay = employee.dailyRate * daysWorked;
     
-    // deducting 10% tax from the gross pay
+    // Formula: Tax = 10% of Gross Pay
     const tax = grossPay * 0.10;
     
-    // final net pay calculation
+    // Formula: Net Pay = Gross Pay - Tax
     const netPay = grossPay - tax;
 
     setPayrollResult({ name: employee.name, grossPay, tax, netPay });
   };
-
+  
   return (
     <div style={{ border: '2px solid #333', padding: '20px', marginBottom: '40px', borderRadius: '8px' }}>
       <h2>Part A: Monolithic Payroll System</h2>

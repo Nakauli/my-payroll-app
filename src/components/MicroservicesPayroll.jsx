@@ -52,8 +52,16 @@ const MicroservicesPayroll = () => {
     const empData = empService.getById(id);
 
     if (empData) {
-      // step 2: passing that data to the payroll service for the math
-      const result = payrollService.calculate(empData, 22); // assuming 22 days worked
+      // asking the user how many days the employee actually worked
+      const daysInput = prompt(`How many days did ${empData.name} work?`);
+      
+      // if they cancel or leave it empty, we just stop
+      if (daysInput === null || daysInput === "") return;
+
+      const daysWorked = parseFloat(daysInput);
+
+      // step 2: passing data AND the days worked to the payroll service
+      const result = payrollService.calculate(empData, daysWorked); 
       setPayrollData(result);
     }
   };
